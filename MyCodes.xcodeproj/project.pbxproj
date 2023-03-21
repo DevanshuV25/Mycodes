@@ -72,10 +72,18 @@
 			children = (
 				C81DF37229C9EE1100EF806D /* general.h */,
 				C81DF37429C9EE6800EF806D /* srchsort.h */,
+				C81DF37729C9F1DB00EF806D /* Link List */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		C81DF37729C9F1DB00EF806D /* Link List */ = {
+			isa = PBXGroup;
+			children = (
 				C81DF37529C9EEC100EF806D /* llist.h */,
 				C81DF37629C9EF0D00EF806D /* llques.h */,
 			);
-			path = Headers;
+			path = "Link List";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
