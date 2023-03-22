@@ -156,6 +156,42 @@ node* middleNode(node * &head)
 //    return temp->data;
 }
 
+// leetcode 25. Reverse Nodes in k-Group
 
+void reversekgroup(node * &head,int k)
+{
+    node * grpend = head;
+    node * nlist = NULL;
+    int tk = k;
+    
+    // base case
+    if(head == NULL)
+    {
+        return;
+    }
+    // base case 2
+    if(lenlist(head) < k)
+    {
+        return;
+    }
+       
+    // actual case
+    while(tk != 1)
+    {
+        grpend = grpend->next;
+        tk--;
+    }
+    nlist = grpend->next;
+    grpend->next = NULL;
+    reversell(head,head,NULL);
+    reversekgroup(nlist,k); // recursion
+    
+    while(grpend->next != NULL)
+    {
+        grpend = grpend->next;
+    }
+    grpend->next = nlist;
+
+}
 
 #endif /* llques_h */

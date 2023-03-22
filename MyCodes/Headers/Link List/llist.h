@@ -69,8 +69,9 @@ void inserthead(node * &head, int d)
     if(head == NULL)
     {
         node * temp = new node(d);
-        temp->next = temp;
+        temp->next = NULL;
         head = temp;
+        return;
     }
     //create new node
     node * temp = new node(d);

@@ -12,11 +12,30 @@
 
 int main()
 {
-    node * head;
-    head=endlist(6);
+    node * head = NULL;
+   // inserthead(head,7);
+    
+   // inserthead(head,6);
+
+//    inserthead(head,8);
+//
+//    inserthead(head,7);
+//
+//    inserthead(head,6);
+//
+    inserthead(head,5);
+
+    inserthead(head,4);
+    inserthead(head,3);
+    inserthead(head,2);
+    inserthead(head,1);
+    
     printlist(head);
-    reversell2(head,1,2);
+    
+    reversekgroup(head,3);
     printlist(head);
+    
+    
     
     //cout<<"middle "<<middleNode(head)->data<<endl;
     cout<<"head "<<head->data<<endl;
