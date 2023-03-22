@@ -18,6 +18,8 @@
 
 void reversell(node * &head, node * curr, node * prev)
 {
+    // first function call should be reversell(head,head,NULL)
+    
     // base case
     if(curr == NULL)
     {
@@ -80,66 +82,47 @@ void reversell(node * &head, node * curr, node * prev)
 }
 
 // leetcode 92. Reverse link list II
-/*
+
 void reversell2(node * &head,int left,int right)
 {
-    if(left == 1) // for first list
+    int l=left;
+   
+    if(left == 1 && right == 1)
     {
-        node * thead = head;
-        int count=1;
-        while(count++ != right)
-        {
-            thead = thead->next;
-        }
-        if(thead->next == NULL)
-        {
-            reversell(head);
-        }
-        else
-        {
-            node * temp = thead->next;
-            thead->next = NULL;
-            reversell(head);
-            thead = head;
-            while(thead->next != NULL)
-            {
-                thead = thead->next;
-            }
-            thead->next = temp;
-        }
         return;
     }
-    
-    // for middle list
-    
-    node * thead = head;
-    node * lthead = NULL;
-    int count=1;
-    while(count++ != right)
+    node * blist = head;
+    node * alist = head;
+    while(right != 1)
     {
-        if(count == left)
-            lthead = thead;
-        thead = thead->next;
-        
+        if(left > 2)
+            blist = blist->next;
+        alist = alist->next;
+        right--;
+        left--;
     }
     
-    if(thead->next == NULL)  // for last list
+    node * temp = alist;
+    alist = alist->next;
+    temp->next = NULL;
+
+    if(l == 1)
+        reversell(blist,blist,NULL);
+    else
+        reversell(blist->next,blist->next,NULL);
+
+    if(l == 1)
     {
-        reversell(lthead->next);
-        return;
+        head = blist;
     }
-    
-    node * temp = thead->next;
-    thead->next = NULL;
-    reversell(lthead->next);
-    node * ptr = head;
-    while(ptr->next != NULL)
+    while(blist->next != NULL)
     {
-        ptr = ptr->next;
+        blist = blist->next;
     }
-    ptr->next = temp;
+    blist->next = alist;
+    return;
 }
-*/
+
 // leetcode 876. Middle of the Linked List
 
 node* middleNode(node * &head)
@@ -172,5 +155,7 @@ node* middleNode(node * &head)
 //    }
 //    return temp->data;
 }
+
+
 
 #endif /* llques_h */
