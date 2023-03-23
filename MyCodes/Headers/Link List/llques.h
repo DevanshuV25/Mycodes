@@ -8,6 +8,10 @@
 // 206. Reverse Link List
 // 92. Reverse Linbk List II
 // 876. Middle of the Linked List
+// 141. Linked List Cycle
+// CStudio startnode of cycle
+// CStudio removeloop from list
+
 
 #ifndef llques_h
 #define llques_h
@@ -192,6 +196,107 @@ void reversekgroup(node * &head,int k)
     }
     grpend->next = nlist;
 
+}
+// Code studio Detect and remove loop from link list
+//https://www.codingninjas.com/codestudio/problems/interview-shuriken-42-detect-and-remove-loop_241049?leftPanelTab=1&campaign=YouTube_codestudio_lovebabbar28thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=YouTube_codestudio_lovebabbar28thjan
+// leetcode 141. Linked List Cycle  (detect loop)
+
+bool detectloop(node *head)
+{
+        if(head == NULL)
+        {
+            return false;
+        }
+        node * slow = head;
+        node * fast = head;
+
+        while(fast != NULL && fast->next != NULL)
+        {
+            fast = fast->next->next;
+            slow = slow->next;
+
+            if(fast == slow)
+                return true;
+            
+        }
+        return false;
+}
+ 
+//using this function for above code
+node * startnode(node * &head)
+{
+    
+    if(detectloop(head))
+    {
+        node * slow = head;
+        node * fast = head;
+        
+        while(fast != NULL && fast->next != NULL)
+        {
+            fast = fast->next->next;
+            slow = slow->next;
+            
+            if(fast == slow)
+                break;
+        }
+        // using floyde cycle detection
+        slow = head;
+        while (slow != fast )
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
+    }
+    else
+    {
+        return head;
+    }
+}
+
+//using this function for above code
+void removeloop(node * &head)
+{
+    if(head == NULL)
+    {
+        return;
+    }
+    //using startnode approach
+    node * temp = startnode(head);
+    while(temp->next != startnode(head))
+    {
+        temp = temp->next;
+    }
+    temp->next = NULL;
+    
+    
+   //  check and shift temp apprach works fine but show TLE
+//    if(head == NULL)
+//    {
+//        return;
+//    }
+//    if(slow == fast)
+//        {
+//            while(temp != NULL)
+//            {
+//                while(check != temp)
+//                {
+//                    if(temp->next == check)
+//                    {
+//                        temp->next = NULL;
+//                        return head;
+//                    }
+//                    else
+//                    {
+//                        check = check->next;
+//                    }
+//                }
+//                temp = temp->next;
+//                check = head;
+//            }
+//        }
+//
+//        return head;
 }
 
 #endif /* llques_h */
