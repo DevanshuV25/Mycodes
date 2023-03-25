@@ -6,12 +6,14 @@
 //
 // Leetcode
 // 206. Reverse Link List
-// 92. Reverse Linbk List II
+// 92.  Reverse Link List II
 // 876. Middle of the Linked List
 // 141. Linked List Cycle
-// CStudio startnode of cycle
-// CStudio removeloop from list
-
+// // CStudio startnode of cycle
+// // CStudio removeloop from list
+// 203. Remove Linked List Elements
+// 2095.Delete the Middle Node of a Linked List
+// 19.  Remove Nth Node From End of List
 
 #ifndef llques_h
 #define llques_h
@@ -197,9 +199,10 @@ void reversekgroup(node * &head,int k)
     grpend->next = nlist;
 
 }
+
+// leetcode 141. Linked List Cycle  (detect loop)
 // Code studio Detect and remove loop from link list
 //https://www.codingninjas.com/codestudio/problems/interview-shuriken-42-detect-and-remove-loop_241049?leftPanelTab=1&campaign=YouTube_codestudio_lovebabbar28thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=YouTube_codestudio_lovebabbar28thjan
-// leetcode 141. Linked List Cycle  (detect loop)
 
 bool detectloop(node *head)
 {
@@ -299,4 +302,142 @@ void removeloop(node * &head)
 //        return head;
 }
 
+// leetcode 21. Merge Two Sorted Lists
+
+node* mergeTwoLists(node* list1, node* list2)
+    {/*
+        node * head = NULL;
+        node * temp = NULL;
+
+        if(list1 == NULL && list2 == NULL)
+        {
+            return head;
+        }
+        else if(list1 != NULL || list2 != NULL || list1->data <= list2->data )
+        {
+            head = list1;
+        
+            if (list1->next != NULL && list1->next->data > list2->data)
+            {
+                temp = list1->next;
+                list1->next = list2;
+                list2 = list2->next;
+                list1 = list1->next;
+                list1->next = mergeTwoLists(temp,list2);
+            }
+            else
+            {
+                temp = NULL;
+                list1->next = list2;
+                
+            }
+            
+        }
+    else
+        return head;*/
+    return list1;
+    }
+
+// leetcode 203. Remove Linked List Elements
+
+node * removeElements(node* head, int val)
+{
+    node * htemp = head;
+    node * lnode = head;
+    if(head == NULL)
+    {
+        return head;
+    }
+    if( head->data == val) // for 1st position
+    {
+        head = head->next;
+        return removeElements(head,val);
+    }
+    
+    while(htemp != NULL && htemp->data != val)
+    {
+        lnode=htemp;
+        htemp = htemp->next;
+    }
+    if(htemp != NULL)
+    {
+        lnode->next = htemp->next;
+        htemp = htemp->next;
+        lnode->next = removeElements(htemp,val);
+    }
+    
+    return head;
+}
+
+// leetcode 2095. Delete the Middle Node of a Linked List
+
+node* deleteMiddle(node* head)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        return NULL;
+    }
+    if(head->next->next == NULL)
+    {
+        head->next = NULL;
+        return head;
+    }
+
+    node * slow = head;
+    node * fast = head->next;
+    node * s = NULL;
+
+    while(fast != NULL)
+    {
+        s = slow;
+        slow = slow->next;
+        fast = fast->next;
+        if(fast != NULL)
+            fast = fast->next;
+    }
+    s->next = slow->next;
+    return head;
+}
+
+// leetcode 19. Remove Nth Node From End of List
+
+node* removeNthFromEnd(node* head, int n)
+{
+    node * slow = head;
+    node * fast = head;
+    
+    if(head->next == NULL && n==1)
+    {
+        return NULL;
+    }
+    
+    int x = n;
+    while(x != 0 )
+    {
+        if(fast != NULL)
+            fast = fast->next;
+        x--;
+    }
+    while(fast != NULL)
+    {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    
+    if(slow == head)
+    {
+        head = head->next;
+    }
+    else
+    {
+        node * temp = head;
+        while(temp->next != slow)
+        {
+            temp = temp->next;
+        }
+        temp->next  = temp->next->next;
+    }
+    
+    return head;
+}
 #endif /* llques_h */
