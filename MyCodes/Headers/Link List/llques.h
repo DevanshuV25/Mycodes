@@ -14,6 +14,7 @@
 // 203. Remove Linked List Elements
 // 2095.Delete the Middle Node of a Linked List
 // 19.  Remove Nth Node From End of List
+// 83.  Remove Duplicates from Sorted List
 
 #ifndef llques_h
 #define llques_h
@@ -440,4 +441,24 @@ node* removeNthFromEnd(node* head, int n)
     
     return head;
 }
+
+// leetcode 83. Remove Duplicates from Sorted List
+
+node* deleteDuplicates(node* head)
+{
+    node * prev = head;
+    node * temp = head;
+    while(prev != NULL)
+    {
+        if(temp == NULL || prev->data != temp->data )
+        {
+            prev->next = temp;
+            prev = temp;
+        }
+        if(temp != NULL)
+        temp = temp->next;
+    }
+    return head;
+}
+
 #endif /* llques_h */
