@@ -16,6 +16,7 @@
 // 2095.Delete the Middle Node of a Linked List
 // 19.  Remove Nth Node From End of List
 // 83.  Remove Duplicates from Sorted List
+// // CStudio Sort linked list of 0s 1s 2s
 
 #ifndef llques_h
 #define llques_h
@@ -460,6 +461,94 @@ node* deleteDuplicates(node* head)
         temp = temp->next;
     }
     return head;
+}
+
+// Code Studio Sort linked list of 0s 1s 2s
+
+node* sortList(node *head)
+{
+    // Write your code here.
+    node * nhead = head;
+    node * zero = NULL;
+    node * zo = NULL;
+    node * one = NULL;
+    node * oe = NULL;
+    node * two = NULL;
+    node * to = NULL;
+    while(nhead != NULL )
+    {
+        if(nhead->data == 0)
+        {
+            if(zero == NULL)
+            {
+                zero = nhead;
+                zo = zero;
+            }
+            else
+            {
+                zo->next = nhead;
+                zo = zo->next;
+            }
+            nhead = nhead->next;
+            continue;
+        }
+        if(nhead->data == 1)
+        {
+            if(one == NULL)
+            {
+                one = nhead;
+                oe = one;
+            }
+            else
+            {
+                oe->next = nhead;
+                oe = oe->next;
+            }
+            nhead = nhead->next;
+            continue;
+        }
+        if(nhead->data == 2)
+        {
+            if(two == NULL)
+            {
+                two = nhead;
+                to = two;
+            }
+            else
+            {
+                to->next = nhead;
+                to = to->next;
+            }
+            nhead = nhead->next;
+            continue;
+        }
+    }
+    if (zero != NULL) {
+      nhead = zero;
+    }
+    else if(one != NULL)
+    {
+        nhead = one;
+    }
+    else
+    {
+        nhead = two;
+    }
+    if(zo != NULL){
+        zo->next = one;
+        if(one == NULL){
+            zo->next = two;
+        }
+    }
+    if (oe != NULL) {
+      oe->next = two;
+    }
+    if (to != NULL) {
+      to->next = NULL;
+    }
+
+    return nhead;
+        
 }
 
 #endif /* llques_h */
