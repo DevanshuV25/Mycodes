@@ -8,15 +8,20 @@
 // 206. Reverse Link List
 // 92.  Reverse Link List II
 // 876. Middle of the Linked List
-// 25. Reverse Nodes in k-Group
+// 25.  Reverse Nodes in k-Group
 // 141. Linked List Cycle
 // // CStudio startnode of cycle
 // // CStudio removeloop from list
+// 21.  Merge Two Sorted Lists
 // 203. Remove Linked List Elements
 // 2095.Delete the Middle Node of a Linked List
 // 19.  Remove Nth Node From End of List
 // 83.  Remove Duplicates from Sorted List
 // // CStudio Sort linked list of 0s 1s 2s
+// 234. Palindrome Linked List
+// 2.   Add Two Numbers
+// 445. Add Two Numbers II
+// // GFG Clone a linked list with next and random pointer
 
 #ifndef llques_h
 #define llques_h
@@ -205,7 +210,7 @@ void reversekgroup(node * &head,int k)
 
 // leetcode 141. Linked List Cycle  (detect loop)
 // Code studio Detect and remove loop from link list
-//https://www.codingninjas.com/codestudio/problems/interview-shuriken-42-detect-and-remove-loop_241049?leftPanelTab=1&campaign=YouTube_codestudio_lovebabbar28thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=YouTube_codestudio_lovebabbar28thjan
+//https://rb.gy/enqc
 
 bool detectloop(node *head)
 {
@@ -228,118 +233,147 @@ bool detectloop(node *head)
         return false;
 }
  
-//using this function for above code
-node * startnode(node * &head)
-{
-    
-    if(detectloop(head))
+    //using this function for above code
+    node * startnode(node * &head)
     {
-        node * slow = head;
-        node * fast = head;
         
-        while(fast != NULL && fast->next != NULL)
+        if(detectloop(head))
         {
-            fast = fast->next->next;
-            slow = slow->next;
+            node * slow = head;
+            node * fast = head;
             
-            if(fast == slow)
-                break;
+            while(fast != NULL && fast->next != NULL)
+            {
+                fast = fast->next->next;
+                slow = slow->next;
+                
+                if(fast == slow)
+                    break;
+            }
+            // using floyde cycle detection
+            slow = head;
+            while (slow != fast )
+            {
+                slow = slow->next;
+                fast = fast->next;
+            }
+            return slow;
         }
-        // using floyde cycle detection
-        slow = head;
-        while (slow != fast )
+        else
         {
-            slow = slow->next;
-            fast = fast->next;
+            return head;
         }
-        return slow;
     }
-    else
-    {
-        return head;
-    }
-}
 
-//using this function for above code
-void removeloop(node * &head)
-{
-    if(head == NULL)
+    //using this function for above code
+    void removeloop(node * &head)
     {
-        return;
+        if(head == NULL)
+        {
+            return;
+        }
+        //using startnode approach
+        node * temp = startnode(head);
+        while(temp->next != startnode(head))
+        {
+            temp = temp->next;
+        }
+        temp->next = NULL;
+        
+        
+    //  check and shift temp apprach works fine but show TLE
+    //    if(head == NULL)
+    //    {
+    //        return;
+    //    }
+    //    if(slow == fast)
+    //        {
+    //            while(temp != NULL)
+    //            {
+    //                while(check != temp)
+    //                {
+    //                    if(temp->next == check)
+    //                    {
+    //                        temp->next = NULL;
+    //                        return head;
+    //                    }
+    //                    else
+    //                    {
+    //                        check = check->next;
+    //                    }
+    //                }
+    //                temp = temp->next;
+    //                check = head;
+    //            }
+    //        }
+    //
+    //        return head;
     }
-    //using startnode approach
-    node * temp = startnode(head);
-    while(temp->next != startnode(head))
-    {
-        temp = temp->next;
-    }
-    temp->next = NULL;
-    
-    
-   //  check and shift temp apprach works fine but show TLE
-//    if(head == NULL)
-//    {
-//        return;
-//    }
-//    if(slow == fast)
-//        {
-//            while(temp != NULL)
-//            {
-//                while(check != temp)
-//                {
-//                    if(temp->next == check)
-//                    {
-//                        temp->next = NULL;
-//                        return head;
-//                    }
-//                    else
-//                    {
-//                        check = check->next;
-//                    }
-//                }
-//                temp = temp->next;
-//                check = head;
-//            }
-//        }
-//
-//        return head;
-}
 
 // leetcode 21. Merge Two Sorted Lists
 
 node* mergeTwoLists(node* list1, node* list2)
-    {/*
-        node * head = NULL;
-        node * temp = NULL;
-
-        if(list1 == NULL && list2 == NULL)
-        {
-            return head;
-        }
-        else if(list1 != NULL || list2 != NULL || list1->data <= list2->data )
-        {
-            head = list1;
-        
-            if (list1->next != NULL && list1->next->data > list2->data)
-            {
-                temp = list1->next;
-                list1->next = list2;
-                list2 = list2->next;
-                list1 = list1->next;
-                list1->next = mergeTwoLists(temp,list2);
-            }
-            else
-            {
-                temp = NULL;
-                list1->next = list2;
-                
-            }
-            
-        }
-    else
-        return head;*/
-    return list1;
+{
+    if(list1 == NULL && list2 == NULL)
+    {
+        return NULL;
     }
+    if(list1 == NULL && list2 != NULL)
+    {
+        return list2;
+    }
+
+    if(list2 == NULL && list1 != NULL)
+    {
+        return list1;
+    }
+
+    node * head = NULL;
+    node * temp = list2;
+    node * curr = list1->next;
+    node * prev = list1;
+
+    while(temp != NULL)
+    {
+        if(temp->data < list1->data)
+        {
+            list2 = list2->next;
+            temp->next = list1;
+            list1 = temp;
+            temp = list2;
+            prev = list1;
+            curr = list1->next;
+        }
+        
+        if(curr == NULL && temp != NULL)
+        {
+            list2 = list2->next;
+            prev->next = temp;
+            temp->next = NULL;
+            curr = temp;
+            temp = list2;
+        }
+
+         if(temp!=NULL && prev!=NULL && curr!=NULL && temp->data >= prev->data && temp->data < curr->data)
+         {
+            list2 = list2->next;
+            prev->next = temp;
+            temp->next = curr;
+            prev = temp;
+            temp = list2;
+        }
+        else
+        {
+             if(curr != NULL)
+             {
+                prev = prev->next;
+                curr = curr->next;
+            }
+        }
+    }
+
+    return list1;
+}
 
 // leetcode 203. Remove Linked List Elements
 
@@ -549,6 +583,168 @@ node* sortList(node *head)
 
     return nhead;
         
+}
+
+// leetcode 234. Palindrome Linked List
+
+bool isPalindrome(node* head)
+{
+    if(head->next == NULL)
+    {
+        return true;
+    }
+    node * midnode;
+    midnode = middleNode(head);
+    reversell(midnode->next,midnode->next,NULL);
+    node * temp1 = head;
+    node * temp2 = midnode->next;
+    while(temp2 != NULL)
+    {
+        if(temp1 != NULL && temp2 != NULL)
+        {
+            if(temp1->data != temp2->data){
+                return false;
+            }
+        temp1 = temp1->next;
+        temp2 = temp2->next;
+        }
+    }
+    return true;
+}
+
+// leetcode 2. Add Two Numbers
+
+node* addTwoNumbers(node* l1, node* l2)
+{
+    node * t1 = l1;
+    node * t2 = l2;
+    int num = 0, rem = 0, carry = 0;
+    node *ans = new node(0);
+    node *head = ans;
+    while(t1 != NULL || t2 != NULL || carry != 0 )
+    {
+        int val1 = 0,val2 = 0;
+        if(t1 != NULL)
+        {
+            val1 = t1->data;
+        }
+        if(t2 != NULL)
+        {
+            val2 = t2->data;
+        }
+        num = val1 + val2 + carry;
+        rem = num%10;
+        ans->next = new node(rem);
+        ans = ans->next;
+        carry = num/10;
+        if(t1 != NULL)
+            t1 = t1->next;
+        if(t2 != NULL)
+            t2 = t2->next;
+    }
+    head = head->next;
+    
+    return head;
+}
+
+// leetcode 445. Add Two Numbers II
+
+node* addTwoNumbersII(node* l1, node* l2)
+{
+    reversell(l1,l1,NULL);
+    reversell(l2,l2,NULL);
+    node * t1 = l1;
+    node * t2 = l2;
+    int num = 0, rem = 0, carry = 0;
+    node *ans = new node(0);
+    node *head = ans;
+    while(t1 != NULL || t2 != NULL || carry != 0 )
+    {
+        int val1 = 0,val2 = 0;
+        if(t1 != NULL)
+        {
+            val1 = t1->data;
+        }
+        if(t2 != NULL)
+        {
+            val2 = t2->data;
+        }
+        num = val1 + val2 + carry;
+        rem = num%10;
+        ans->next = new node(rem);
+        ans = ans->next;
+        carry = num/10;
+        if(t1 != NULL)
+            t1 = t1->next;
+        if(t2 != NULL)
+            t2 = t2->next;
+    }
+    head = head->next;
+    reversell(l1,l1,NULL);
+    reversell(l2,l2,NULL);
+    reversell(head,head,NULL);
+    return head;
+}
+
+// Geekforgeeks Clone a linked list with next and random pointer
+
+node *copyList(node *head)
+{
+    //Write your code here
+    node * temp = head;
+    node * newtemp = new node(0);
+    node * newhead = newtemp;
+    
+    // make singly clone list
+    while(temp != NULL)
+    {
+        node * nde = new node(temp->data);
+        newtemp->next = nde;
+        newtemp = newtemp->next;
+        temp = temp->next;
+    }
+    
+    // mapping the orginal list with clone list , org node then clone node....
+    newhead = newhead->next;
+    temp = head;//org
+    newtemp = newhead;//new
+    node * org;
+    node * clone;
+    while(temp != NULL && newtemp != NULL)
+    {
+        org = temp->next;
+        temp->next = newtemp;
+        clone = newtemp->next;
+        newtemp->next = org;
+        temp = org;
+        newtemp = clone;
+        
+    }
+    
+    // copying the random pointers from orginal list
+    
+    /* run only when we have this typte of node having random pointers
+     temp = head;
+     while(temp != NULL)
+     {
+        if(temp->next != NULL && temp->arb != NULL)
+            temp->next->arb = temp->arb->next;
+        temp = temp->next->next;
+     }/*/
+    
+    //unmap the orginal and clone list for seperation
+    temp = head;
+    newtemp = newhead;
+    while(temp != NULL && newtemp != NULL)
+    {
+        temp->next = newtemp->next;
+        if(newtemp->next != NULL)
+            newtemp->next = newtemp->next->next;
+        temp = temp->next;
+        newtemp = newtemp->next;
+        
+    }
+    return newhead;
 }
 
 #endif /* llques_h */
