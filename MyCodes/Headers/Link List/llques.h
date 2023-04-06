@@ -17,15 +17,18 @@
 // 2095.Delete the Middle Node of a Linked List
 // 19.  Remove Nth Node From End of List
 // 83.  Remove Duplicates from Sorted List
+// 82.  Remove Duplicates from Sorted List
+// // GFG Remove Duplicates from unsorted List
 // // CStudio Sort linked list of 0s 1s 2s
 // 234. Palindrome Linked List
 // 2.   Add Two Numbers
 // 445. Add Two Numbers II
 // // GFG Clone a linked list with next and random pointer
+//
 
 #ifndef llques_h
 #define llques_h
-
+#include <map>
 #include "llist.h"
 
 // leetcode 206. Reverse link list
@@ -497,6 +500,61 @@ node* deleteDuplicates(node* head)
     return head;
 }
 
+// leetcode 82. Remove Duplicates from Sorted Lis
+
+node* deleteDuplicates2(node* head)
+{
+    node * curr = head;
+    map<int,int> m;
+    while(curr != NULL)
+    {
+        m[curr->data]++;
+        curr = curr->next;
+    }
+    node * dummy = new node(0);
+    node * temp = dummy;
+    curr = head;
+    while(curr != NULL)
+    {
+        if(m[curr->data] == 1)
+        {
+            dummy->next = curr;
+            dummy = dummy->next;
+            curr = curr->next;
+            dummy->next = NULL;
+        }
+        else
+            curr = curr->next;
+    }
+    return temp->next;
+}
+
+// GFG Remove Duplicates from unsorted List
+
+node * removeDuplicates( node *head)
+{
+    // your code goes here
+    node * curr = head;
+    node * prev = NULL;
+    map<int,int> m;
+    m[curr->data]=1;
+    prev = curr;
+    curr = curr->next;
+    while (curr != NULL)
+    {
+      if (m[curr->data])
+           prev->next = curr->next;
+       else
+       {
+           m[curr->data] = 1;
+           prev = curr;
+       }
+           
+       curr = prev->next;
+    }
+    return head;
+}
+
 // Code Studio Sort linked list of 0s 1s 2s
 
 node* sortList(node *head)
@@ -746,5 +804,7 @@ node *copyList(node *head)
     }
     return newhead;
 }
+
+
 
 #endif /* llques_h */
