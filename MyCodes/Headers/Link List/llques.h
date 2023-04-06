@@ -17,14 +17,15 @@
 // 2095.Delete the Middle Node of a Linked List
 // 19.  Remove Nth Node From End of List
 // 83.  Remove Duplicates from Sorted List
-// 82.  Remove Duplicates from Sorted List
+// 82.  Remove Duplicates from Sorted List II
 // // GFG Remove Duplicates from unsorted List
 // // CStudio Sort linked list of 0s 1s 2s
 // 234. Palindrome Linked List
 // 2.   Add Two Numbers
 // 445. Add Two Numbers II
 // // GFG Clone a linked list with next and random pointer
-//
+// (LBSheet) Move the last element to Front in a Linked List
+// GFG Add 1 to a number represented as linked list
 
 #ifndef llques_h
 #define llques_h
@@ -330,8 +331,7 @@ node* mergeTwoLists(node* list1, node* list2)
     {
         return list1;
     }
-
-    node * head = NULL;
+    
     node * temp = list2;
     node * curr = list1->next;
     node * prev = list1;
@@ -805,6 +805,63 @@ node *copyList(node *head)
     return newhead;
 }
 
+// (LBSheet) Move the last element to Front in a Linked List
 
+node *movetofront(node *head)
+{
+    if(head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    node * seclast = nullptr;
+    node * last = head;
+    while(last->next != NULL)
+    {
+        seclast = last;
+        last = last->next;
+    }
+    seclast->next = NULL;
+    last->next = head;
+    head = last;
+    return head;
+}
 
+// GFG Add 1 to a number represented as linked list
+
+node* addOne(node *head)
+{
+    // Your Code here
+    // return head of list after adding one
+    reversell(head,head,NULL);
+    node * t1 = head;
+    node * t2 = new node(1);
+    int num = 0, rem = 0, carry = 0;
+    node *ans = new node(0);
+    node *newhead = ans;
+    while(t1 != NULL || t2 != NULL || carry != 0 )
+    {
+        int val1 = 0,val2 = 0;
+        if(t1 != NULL)
+        {
+            val1 = t1->data;
+        }
+        if(t2 != NULL)
+        {
+            val2 = t2->data;
+        }
+        num = val1 + val2 + carry;
+        rem = num%10;
+        ans->next = new node(rem);
+        ans = ans->next;
+        carry = num/10;
+        if(t1 != NULL)
+            t1 = t1->next;
+        if(t2 != NULL)
+            t2 = t2->next;
+    }
+    newhead = newhead->next;
+    reversell(head,head,NULL);
+    reversell(newhead,newhead,NULL);
+    return newhead;
+}
 #endif /* llques_h */
