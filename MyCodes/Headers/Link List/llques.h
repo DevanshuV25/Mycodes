@@ -32,6 +32,8 @@
 // // GFG Split a Circular Linked List into two halves
 // 725. Split Linked List in Parts
 // // GFG Reverse a Doubly Linked List
+// 61. Rotate List
+// 1721. Swapping Nodes in a Linked List
 
 #ifndef llques_h
 #define llques_h
@@ -1043,6 +1045,57 @@ dnode* reverseDLL(dnode * head)
     return thead;
 }
 
+// leetcode 61. Rotate List
 
+node* rotateRight(node* head, int k)
+{
+    if(k == 0 || head == NULL)
+        return head;
+    node * temp = head;
+    int t ,count = 1;
+    while(temp->next != NULL )
+    {
+        temp = temp->next;
+        count++;
+    }
+    t = k%count;
+    while(t--)
+    {
+        temp = head;
+        while(temp->next->next != NULL )
+        {
+            temp = temp->next;
+        }
+        node * nod = temp->next;
+        if(nod != NULL)
+        {temp->next = nod->next;
+        nod->next = head;
+        head = nod;}
+    }
+    
+    return head;
+}
+
+// leetcode 1721. Swapping Nodes in a Linked List
+
+node* swapNodes(node* head, int k)
+{
+    node *n1 = NULL , *n2 = NULL;
+    for (auto p = head; p != NULL; p = p->next)
+    {
+        if(k <= 0)
+            n2 = n2->next;
+        if(n2!=NULL)
+            cout<<n2->data<<endl;
+        if (--k == 0) {
+            n1 = p;
+            n2 = head;
+        }
+    }
+    int temp = n1->data;
+    n1->data = n2->data;
+    n2->data= temp;
+    return head;
+}
 
 #endif /* llques_h */

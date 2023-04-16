@@ -11,10 +11,10 @@
 
 int main()
 {
-//    node * list1 = NULL;
-//    //node * list2 = NULL;
+    node * list1 = NULL;
+//    node * list2 = NULL;
 //
-//        inserthead(list1,5);
+     inserthead(list1,5);
 //        inserthead(list1,4);
 //        inserthead(list1,3);
 //        inserthead(list1,2);
@@ -26,7 +26,7 @@ int main()
 //    //    inserthead(list2,1);
 //    //
 //        list1 = movetofront(list1);
-//        printlist(list1);
+        printlist(list1);
 //        //printlist(list2);
 //
 //        //node * head = NULL;
