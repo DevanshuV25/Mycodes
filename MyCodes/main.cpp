@@ -11,27 +11,27 @@
 
 int main()
 {
-    node * list1 = NULL;
-    //node * list2 = NULL;
-        
-        inserthead(list1,5);
-        inserthead(list1,4);
-        inserthead(list1,3);
-        inserthead(list1,2);
-        inserthead(list1,1);
-    //
-    //
-        //inserthead(list2,0);
-    //    inserthead(list2,3);
-    //    inserthead(list2,1);
-    //
-        list1 = movetofront(list1);
-        printlist(list1);
-        //printlist(list2);
-        
-        //node * head = NULL;
-        //head = mergeTwoLists(list1,list2);
-        
-       // printlist(head);
-    
+//    node * list1 = NULL;
+//    //node * list2 = NULL;
+//
+//        inserthead(list1,5);
+//        inserthead(list1,4);
+//        inserthead(list1,3);
+//        inserthead(list1,2);
+//        inserthead(list1,1);
+//    //
+//    //
+//        //inserthead(list2,0);
+//    //    inserthead(list2,3);
+//    //    inserthead(list2,1);
+//    //
+//        list1 = movetofront(list1);
+//        printlist(list1);
+//        //printlist(list2);
+//
+//        //node * head = NULL;
+//        //head = mergeTwoLists(list1,list2);
+//
+//       // printlist(head);
+//
 }

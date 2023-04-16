@@ -5,6 +5,7 @@
 //  Created by Devanshu Rajpoot on 21/03/23.
 //
 // Leetcode
+// Read fron GFG (5)
 // 206. Reverse Link List
 // 92.  Reverse Link List II
 // 876. Middle of the Linked List
@@ -25,11 +26,17 @@
 // 445. Add Two Numbers II
 // // GFG Clone a linked list with next and random pointer
 // (LBSheet) Move the last element to Front in a Linked List
-// GFG Add 1 to a number represented as linked list
+// // GFG Add 1 to a number represented as linked list
+// 160. Intersection of Two Linked Lists
+// // GFG Intersection of sorted lists (common elements in both list)
+// // GFG Split a Circular Linked List into two halves
+// 725. Split Linked List in Parts
+// // GFG Reverse a Doubly Linked List
 
 #ifndef llques_h
 #define llques_h
 #include <map>
+#include <vector>
 #include "llist.h"
 
 // leetcode 206. Reverse link list
@@ -864,4 +871,178 @@ node* addOne(node *head)
     reversell(newhead,newhead,NULL);
     return newhead;
 }
+
+// leetcode 160. Intersection of Two Linked Lists
+
+node *getIntersectionNode(node *headA, node *headB)
+{
+    node * temp1 = headA;
+    node * temp2 = headB;
+    while(temp1 != temp2)
+    {
+        if(temp1 == NULL)
+            temp1 = headB;
+        else
+            temp1 = temp1->next;
+        
+        if(temp2 == NULL)
+            temp2 = headA;
+        else
+            temp2 = temp2->next;
+    }
+    return temp1;
+}
+
+// GFG Intersection of sorted lists (common elements in both list)
+
+node* findIntersection(node* head1, node* head2)
+{
+    // Your Code Here
+    node * temp1 = head1;
+    node * temp2 = head2;
+    node * dummy = new node(0);
+    node * ans = dummy;
+    
+    while(temp1 != NULL && temp2 != NULL)
+    {
+        if(temp1->data == temp2->data)
+        {
+            dummy->next = new node(temp1->data);
+            dummy = dummy->next;
+            temp1 = temp1->next;
+            temp2 = temp2->next;
+        }
+        else if(temp1->data < temp2->data)
+        {
+            temp1 = temp1->next;
+        }
+        else if(temp1->data > temp2->data)
+        {
+            temp2 = temp2->next;
+        }
+    }
+    return ans->next;
+    
+}
+
+// GFG Split a Circular Linked List into two halves
+
+void splitList(node *head, node **head1_ref, node **head2_ref)
+{
+    // your code goes here
+    
+    node * slow = head;
+    node * fast = slow->next->next;
+    while(fast != head && fast != head->next)
+    {
+        if(fast != head && fast != head->next)
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    *head1_ref = head;
+    *head2_ref = slow->next;
+    node * temp = slow->next;
+    while(temp->next != head)
+    {
+        temp = temp->next;
+    }
+    temp->next = *head2_ref;
+    slow->next = *head1_ref;
+    
+}
+
+// leetcode 725. Split Linked List in Parts
+
+vector<node*> splitListToParts(node* head, int k)
+{
+        vector<node*> ans;
+        node * temp = head;
+        int l = lenlist(head);
+        if(l>k && l%k == 0)
+        {
+            int g = l/k;
+            while(temp != NULL)
+            {
+                if(g == 0 || temp == head){
+                    ans.push_back(temp);
+                    g = l/k;}
+                g--;
+                node* last = temp;
+                temp = temp->next;
+                if(g == 0)
+                last->next = NULL;
+            }
+        }
+        else if(l>k && l%k != 0)
+        {
+            int rem = l%k,g,nl = 0;
+
+            if(rem > 1)
+            {
+                nl = l+rem;
+                g = (nl/k);
+            }else{
+                g = (l/k)+ 1;
+            }
+            while(temp != NULL)
+            {
+                if(temp == head)
+                    ans.push_back(temp);
+                if(g == 0){
+                    ans.push_back(temp);
+                    if(rem != 0 && --rem != 0){
+                        g = nl/k;
+                }
+                    else
+                        g = l/k;
+                }
+                g--;
+                node* last = temp;
+                temp = temp->next;
+                if(g == 0)
+                    last->next = NULL;
+            }
+        }
+        else if(l <= k)
+        {
+            int cnt = k;
+            while(temp != NULL)
+            {
+                cnt--;
+                ans.push_back(temp);
+                node* last = temp;
+                temp = temp->next;
+                last->next = NULL;
+            }
+            if(temp == NULL && cnt > 0)
+                {
+                    while(cnt-- != 0 )
+                    {
+                        ans.push_back(temp);
+                    }
+                }
+        }
+        return ans;
+    }
+
+// GFG Reverse a Doubly Linked List
+
+dnode* reverseDLL(dnode * head)
+{
+    //Your code here
+    dnode * thead = head;
+    dnode * temp = thead;
+    while(temp != NULL)
+    {
+        temp = thead->next;
+        thead->next = thead->prev;
+        thead->prev = temp;
+        if(temp != NULL)
+            thead = thead->prev;
+    }
+    return thead;
+}
+
+
+
 #endif /* llques_h */
