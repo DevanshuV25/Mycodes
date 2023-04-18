@@ -34,11 +34,17 @@
 // // GFG Reverse a Doubly Linked List
 // 61. Rotate List
 // 1721. Swapping Nodes in a Linked List
+// // GFG Multiply two linked lists
+// // GFG Segregate even and odd nodes in a Link List
+// 1290. Convert Binary Number in a Linked List to Integer
+// 2487. Remove Nodes From Linked
+
 
 #ifndef llques_h
 #define llques_h
 #include <map>
 #include <vector>
+#include <math.h>
 #include "llist.h"
 
 // leetcode 206. Reverse link list
@@ -1095,6 +1101,145 @@ node* swapNodes(node* head, int k)
     int temp = n1->data;
     n1->data = n2->data;
     n2->data= temp;
+    return head;
+}
+
+// GFG Multiply two linked lists
+
+long long  multiplyTwoLists (node* l1, node* l2)
+{
+  //Your code here
+  node * temp1 = l1;
+  node * temp2 = l2;
+  long long num1 = 0, num2 = 0;
+   long long int mod=pow(10,9)+7;
+  while(temp1 != NULL || temp2 != NULL)
+  {
+      if(temp1 != NULL){
+        num1 = (num1*10+temp1->data)%mod;
+        temp1 = temp1->next;
+      }
+      if(temp2 != NULL){
+        num2 = (num2*10+temp2->data)%mod;
+        temp2 = temp2->next;
+      }
+  }
+  
+  return (num1*num2)%mod;
+  
+}
+
+// GFG Segregate even and odd nodes in a Link List
+
+node* divide(int N, node *head)
+{
+    // code here
+    node * even = new node(0);
+    node * n1 = even;
+    node * odd = new node(0);
+    node * n2 = odd;
+    node * temp = head;
+        
+    while(temp != NULL)
+    {
+        if(temp->data %2 == 0)
+        {
+            n1->next = temp;
+            n1 = n1->next;
+        }
+        else
+        {
+            n2->next = temp;
+            n2 = n2->next;
+        }
+        temp = temp->next;
+    }
+    n1->next = odd->next;
+    n2->next = NULL;
+    head = even->next;
+    delete even;
+    delete odd;
+    
+    return head;
+}
+
+// leetcode 1290. Convert Binary in a Linked List to decimal
+
+int getDecimalValue(node* head)
+{
+    int k=0;
+    while(head)
+    {
+        k=k*2+head->data;
+        head=head->next;
+    }
+    return k;
+}
+
+// leetcode 2487. Remove Nodes From Linked
+// GFG Delete nodes having greater value on right
+
+node* removeNodes(node* head)
+{
+    if(head->next == NULL || head == NULL)
+        return head;
+        
+    node * temp = head->next;
+    node * prev = head;
+    node * large = prev;
+    while(temp != NULL)
+    {
+        if(temp->data > large->data)
+            large = temp;
+        temp = temp->next;
+    }
+    head = large;
+    temp = head->next;
+    while(temp != NULL)
+    {
+        if( temp->data <= prev->data)
+        {
+            temp = temp->next;
+            prev = prev->next;
+        }
+        else
+            break;
+    }
+    
+    if(temp == NULL)
+        return head;
+    
+    temp = head;
+    prev = head;
+
+    while(temp != NULL)
+    {
+        if(temp->next != NULL && temp->next->data > temp->data )
+        {
+            if(temp == head)
+            {
+                head = temp->next;
+                prev = head;
+                temp = head;
+            }
+            else
+            {
+                prev->next = temp->next;
+                temp = temp->next;
+            }
+        }
+        else
+        {
+            temp = temp->next;
+            if(prev->next != temp)
+            {
+                prev = prev->next;
+            }
+        }
+    }
+        
+    head = removeNodes(head);
+    
     return head;
 }
 
