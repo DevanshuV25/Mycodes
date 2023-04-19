@@ -38,7 +38,9 @@
 // // GFG Segregate even and odd nodes in a Link List
 // 1290. Convert Binary Number in a Linked List to Integer
 // 2487. Remove Nodes From Linked
-
+// // GFG Merge Sort for Linked List
+// 1669. Merge In Between Linked Lists
+// // GFG Flattening a Linked List
 
 #ifndef llques_h
 #define llques_h
@@ -1241,6 +1243,187 @@ node* removeNodes(node* head)
     head = removeNodes(head);
     
     return head;
+}
+
+// GFG Merge Sort for Linked List
+
+node* mergeLists(node* list1, node* list2)
+{
+    if(list1 == NULL && list2 == NULL)
+    {
+        return NULL;
+    }
+    if(list1 == NULL && list2 != NULL)
+    {
+        return list2;
+    }
+
+    if(list2 == NULL && list1 != NULL)
+    {
+        return list1;
+    }
+    
+    node * l1 = list1;
+    node * l2 = list2;
+    node * dummy = new node(-1);
+    node * dp = dummy;
+    
+    while(l1 != NULL && l2 != NULL)
+    {
+        if(l1->data <= l2->data)
+        {
+            dp->next = l1;
+            dp = dp->next;
+            l1 = l1->next;
+        }
+        else
+        {
+            dp->next = l2;
+            dp = dp->next;
+            l2 = l2->next;
+        }
+    }
+    
+    while(l1 != NULL)
+    {
+        dp->next = l1;
+        dp = dp->next;
+        l1 = l1->next;
+    }
+    
+    while(l2 != NULL)
+    {
+        dp->next = l2;
+        dp = dp->next;
+        l2 = l2->next;
+    }
+    
+    dummy = dummy->next;
+    return dummy;
+}
+node* mergeSort(node* head)
+{
+    // your code here
+    
+    if(head == NULL || head->next == NULL)
+        return head;
+        
+    node * mid = middleNode(head);
+    node * l1 = head;
+    node * l2 = mid->next;
+    mid->next = NULL;
+        
+    l1 = mergeSort(l1);
+    l2 = mergeSort(l2);
+    
+    head = mergeLists(l1,l2);
+    
+    return head;
+}
+
+// leetcode 1669. Merge In Between Linked Lists
+
+node* mergeInBetween(node* list1, int a, int b, node* list2)
+{
+
+    node * temp1 = list1;
+    node * Ftemp = temp1;
+    node * temp2 = list2;
+    int cnt = 0;
+        
+    while(temp2->next != NULL)
+    {
+        temp2 = temp2->next;
+    }
+        
+    while(cnt < b+1)
+    {
+        if(cnt == a-1)
+        {
+            temp1 = Ftemp;
+        }
+            Ftemp = Ftemp->next;
+            cnt++;
+    }
+    temp1->next = list2;
+    temp2->next = Ftemp;
+    
+    return list1;
+}
+
+// GFG Flattening a Linked List
+
+node* mergeflatten(node* list1, node* list2)
+{
+//    if(list1 == NULL && list2 == NULL)
+//    {
+//        return NULL;
+//    }
+//    if(list1 == NULL && list2 != NULL)
+//    {
+//        return list2;
+//    }
+//
+//    if(list2 == NULL && list1 != NULL)
+//    {
+//        return list1;
+//    }
+//
+//    node * l1 = list1;
+//    node * l2 = list2;
+//    node * dummy = new node(-1);
+//    node * dp = dummy;
+//
+//    while(l1 != NULL && l2 != NULL)
+//    {
+//        if(l1->data <= l2->data)
+//        {
+//            dp->bottom = l1;
+//            dp = dp->bottom;
+//            l1 = l1->bottom;
+//        }
+//        else
+//        {
+//            dp->bottom = l2;
+//            dp = dp->bottom;
+//            l2 = l2->bottom;
+//        }
+//    }
+//
+//    while(l1 != NULL)
+//    {
+//        dp->bottom = l1;
+//        dp = dp->bottom;
+//        l1 = l1->bottom;
+//    }
+//
+//    while(l2 != NULL)
+//    {
+//        dp->bottom = l2;
+//        dp = dp->bottom;
+//        l2 = l2->bottom;
+//    }
+//
+//    dummy = dummy->bottom;
+//    return dummy;
+    return list1; // this only for no error remove it
+}
+node *flatten(node *root)
+{
+   // Your code here
+   
+   if(root == NULL || root->next == NULL)
+    return root;
+    
+   node * L1 = root;
+   node * L2 = root->next;
+   
+   root = mergeflatten(L1,L2);
+   root->next = L2->next;
+   root = flatten(root);
+   
+   return root;
+   
 }
 
 #endif /* llques_h */
