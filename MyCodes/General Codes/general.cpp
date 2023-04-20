@@ -1,17 +1,15 @@
 //
-//  general.h
+//  general.cpp
 //  MyCodes
 //
-//  Created by Devanshu Rajpoot on 21/03/23.
+//  Created by Devanshu Rajpoot on 20/04/23.
 //
-// Swapping two int numbers
-// Printing int array
-// convert binary to decimal
 
-#ifndef general_h
-#define general_h
+#include <stdio.h>
+#include <iostream>
 #include <math.h>
 using namespace std;
+
 
 void swap(int *x,int *y)
 {
@@ -37,6 +35,3 @@ int Bintodec(int n)
         }
         return dec;
 }
-
-
-#endif /* general_h */

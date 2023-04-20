@@ -1,23 +1,17 @@
 //
-//  srchsort.h
+//  srchsort.cpp
 //  MyCodes
 //
-//  Created by Devanshu Rajpoot on 21/03/23.
+//  Created by Devanshu Rajpoot on 20/04/23.
 //
-//  Linear search
-//  Binay search
-//  Slection sort
-//  Bubble sort
-//  Bubble sort Recursivly
-//  insertion sort
-//  Merge sort
 
-#ifndef srchsort_h
-#define srchsort_h
+#include <stdio.h>
+#include <iostream>
+#include <math.h>
 #include "general.h"
 using namespace std;
 
-
+// Linear search
 
 bool linsearch(int a[],int size,int key)
 {
@@ -190,5 +184,3 @@ void mergesort(int arr[],int start,int end)
 }
 
 
-
-#endif /* srchsort_h */
