@@ -11,9 +11,12 @@
 //  Bubble sort Recursivly (Rblbsort)
 //  insertion sort (inssort)
 //  Merge sort (mergesort)
+//  Quick Sort (quicksort)
 
 #ifndef srchsort_h
 #define srchsort_h
+
+using namespace std;
 
 bool linsearch(int a[],int size,int key);
 
@@ -36,6 +39,11 @@ void Rblbsort(int ar[],int size);
 //  insertion sort
 
 void inssort(int arr[],int size);
+
+//Quick Sort
+//Partition function
+void quicksort(int arr[], int lb,int ub);
+int partition(int arr[],int lb,int ub);
 
 // Merge Sort
 //merge function

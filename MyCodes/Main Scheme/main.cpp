@@ -34,7 +34,7 @@ int main()
 
     int arr[7] = {3,6,4,7,1,2,8};
     
-    mergesort(arr, 0, 6);
+    quicksort(arr, 0, 6);
     
     printarray(arr, 7);
 }

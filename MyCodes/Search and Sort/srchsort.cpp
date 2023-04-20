@@ -119,6 +119,37 @@ void inssort(int arr[],int size)
     }
 }
 
+// Quick sort
+
+int partition(int arr[],int lb,int ub)
+{
+    int pivot = arr[ub];
+
+    int i = (lb - 1);
+ 
+    for (int j = lb; j <= ub - 1; j++) {
+ 
+        // If current element is smaller than the pivot
+        if (arr[j] < pivot) {
+ 
+            // Increment index of smaller element
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[ub]);
+    return (i + 1);
+}
+void quicksort(int arr[], int lb,int ub)
+{
+    if(lb <= ub)
+    {
+        int loc = partition(arr, lb, ub);
+        quicksort(arr, lb, loc-1);
+        quicksort(arr, loc+1, ub);
+    }
+}
+
 // Merge Sort
 //merge function
 void merge(int arr[], int p, int q, int r)
