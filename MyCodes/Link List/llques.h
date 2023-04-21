@@ -41,7 +41,7 @@
 // // GFG Merge Sort for Linked List
 // 1669. Merge In Between Linked Lists
 // // GFG Flattening a Linked List
-
+// // GFG Merge K sorted linked lists
 
 #ifndef llques_h
 #define llques_h
@@ -191,4 +191,7 @@ node* mergeInBetween(node* list1, int a, int b, node* list2);
 node* mergeflatten(node* list1, node* list2);
 node *flatten(node *root);
 
+// GFG Merge K sorted linked lists
+
+node * mergeKLists(node *arr[], int K);
 #endif /* llques_h */

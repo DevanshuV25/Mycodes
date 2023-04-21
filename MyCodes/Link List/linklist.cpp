@@ -1978,3 +1978,14 @@ node *flatten(node *root)
    
 }
 
+node * mergeKLists(node *arr[], int K)
+{
+    // Your code here
+    for(int i=1;i<K;i++)
+    {
+        arr[0]=mergeTwoLists(arr[0],arr[i]);
+    }
+           
+        return arr[0];
+}
+
