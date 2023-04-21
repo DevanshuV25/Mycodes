@@ -5,7 +5,7 @@
 //  Created by Devanshu Rajpoot on 21/03/23.
 //
 // Leetcode
-// Read fron GFG (5)
+// Read fron GFG (7)
 // 206. Reverse Link List
 // 92.  Reverse Link List II
 // 876. Middle of the Linked List
