@@ -92,3 +92,26 @@ void mergearrays(vector<int>& nums1, int m, vector<int>& nums2, int n)
     nums1 = vec;
     
 }
+
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
+{
+    int n = nums1.size();
+    int m = nums2.size();
+    mergearrays(nums1,n,nums2,m);
+        
+    int l = n+m;
+    double mid = 0;
+
+    if(l%2 == 0)
+    {
+        l = l/2;
+        mid = double(nums1[l-1]+nums1[l])/2;
+    }
+    else
+    {
+        l = l/2;
+        mid = nums1[l];
+    }
+    return mid;
+    
+}

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C81DF36C29C9EDD600EF806D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C81DF36B29C9EDD600EF806D /* main.cpp */; };
+		C85E7EB929F6BED0005A1A40 /* Trees.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C85E7EB829F6BED0005A1A40 /* Trees.cpp */; };
 		C8808CA429F17E36008E0D65 /* general.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8808CA329F17E36008E0D65 /* general.cpp */; };
 		C8808CA629F17E4F008E0D65 /* srchsort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8808CA529F17E4F008E0D65 /* srchsort.cpp */; };
 		C8808CA829F17E75008E0D65 /* linklist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C8808CA729F17E75008E0D65 /* linklist.cpp */; };
@@ -33,6 +34,8 @@
 		C81DF37429C9EE6800EF806D /* srchsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = srchsort.h; sourceTree = "<group>"; };
 		C81DF37529C9EEC100EF806D /* llist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = llist.h; sourceTree = "<group>"; };
 		C81DF37629C9EF0D00EF806D /* llques.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = llques.h; sourceTree = "<group>"; };
+		C85E7EB829F6BED0005A1A40 /* Trees.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Trees.cpp; sourceTree = "<group>"; };
+		C85E7EBA29F6BEF6005A1A40 /* Trees.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trees.h; sourceTree = "<group>"; };
 		C8808CA329F17E36008E0D65 /* general.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = general.cpp; sourceTree = "<group>"; };
 		C8808CA529F17E4F008E0D65 /* srchsort.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = srchsort.cpp; sourceTree = "<group>"; };
 		C8808CA729F17E75008E0D65 /* linklist.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = linklist.cpp; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 				C8808CA229F17DB0008E0D65 /* Search and Sort */,
 				C8808CAA29F44D88008E0D65 /* Arrays */,
 				C81DF37729C9F1DB00EF806D /* Link List */,
+				C85E7EB329F6BDFD005A1A40 /* Trees */,
 			);
 			path = MyCodes;
 			sourceTree = "<group>";
@@ -87,6 +91,15 @@
 				C8808CA729F17E75008E0D65 /* linklist.cpp */,
 			);
 			path = "Link List";
+			sourceTree = "<group>";
+		};
+		C85E7EB329F6BDFD005A1A40 /* Trees */ = {
+			isa = PBXGroup;
+			children = (
+				C85E7EBA29F6BEF6005A1A40 /* Trees.h */,
+				C85E7EB829F6BED0005A1A40 /* Trees.cpp */,
+			);
+			path = Trees;
 			sourceTree = "<group>";
 		};
 		C8808CA129F17BA2008E0D65 /* General Codes */ = {
@@ -184,6 +197,7 @@
 				C8808CA429F17E36008E0D65 /* general.cpp in Sources */,
 				C8808CAD29F44DC0008E0D65 /* array ques.cpp in Sources */,
 				C8808CA629F17E4F008E0D65 /* srchsort.cpp in Sources */,
+				C85E7EB929F6BED0005A1A40 /* Trees.cpp in Sources */,
 				C81DF36C29C9EDD600EF806D /* main.cpp in Sources */,
 				C8808CA829F17E75008E0D65 /* linklist.cpp in Sources */,
 			);

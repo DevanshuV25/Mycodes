@@ -9,8 +9,7 @@
 // 215. Kth Largest Element in an Array (findKthLarges)
 // GFG Sort an array of 0s, 1s and 2s (sort012)
 // 88. Merge Sorted Array (mergearrays)
-//
-// hello
+// 4. Median of Two Sorted Arrays (findMedianSortedArrays)
 
 
 #ifndef array_ques_hpp
@@ -29,5 +28,6 @@ void sort012(int a[], int n);
 
 void mergearrays(vector<int>& nums1, int m, vector<int>& nums2, int n);
 
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2);
 
 #endif /* array_ques_hpp */
