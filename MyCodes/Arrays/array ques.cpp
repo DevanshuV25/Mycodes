@@ -21,7 +21,7 @@ vector<int> getConcatenation(vector<int>& nums)
 
 int findKthLargest(vector<int>& nums, int k)
 {
-    int sz = nums.size();
+    int sz= nums.size();
     int arr[sz];
     for(int i = 0;i<sz;i++)
     {
